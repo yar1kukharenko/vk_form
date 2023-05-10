@@ -1,25 +1,116 @@
-import logo from './logo.svg';
-import './App.css';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs from "dayjs";
+import 'dayjs/locale/ru';
+import React from "react";
+import { Form, Header, MainContainer } from './components';
+dayjs.locale('ru');
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs} locale="ru">
+      <Header />
+      <MainContainer>
+        <Form />
+      </MainContainer>
+    </LocalizationProvider>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log(`
+____________________
+___000000___00000___
+__00000000_0000000__
+__0000000000000000__
+___00000000000000___
+_____00000000000____
+________00000_______
+__________0_________
+`);
