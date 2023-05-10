@@ -81,11 +81,12 @@ export const Form = ({ ...props }) => {
       setWarning(true);
       return;
     }
+    const formattedDate = dayjs(selectedDate).format("DD-MM-YYYY");
     const data = {
       numberTower,
       numberFloor,
       numberConference,
-      selectedDate,
+      formattedDate,
       TimeInterval,
       comment,
     };
