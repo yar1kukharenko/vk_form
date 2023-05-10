@@ -5,6 +5,8 @@ import dayjs from "dayjs";
 import { MenuItem } from "material-ui/Menu";
 import { MuiThemeProvider } from "material-ui/styles";
 import React from "react";
+
+//............................Стили для компонентов............................................
 const useStyles = makeStyles((theme) => ({
   FormRoot: {
     width: "100%",
@@ -30,15 +32,20 @@ const useStylesComment = makeStyles((theme) => ({
     margin: theme.spacing(7, 0),
   },
 }));
+//.............................Массивы для селекторов...........................................................
 const itemsFloor = Array.from({ length: 25 }, (_, i) => i + 3);
 const itemsConference = Array.from({ length: 10 }, (_, i) => i + 1);
 const itemsTime = Array.from({ length: 9 }, (_, i) => i + 10);
+
+//.........................................Сам компонент..............................................................
 export const Form = ({ ...props }) => {
+  //..........Стили.....................
   const stylesForm = useStyles();
   const stylesSelect = useStylesSelect();
   const stylesDate = useStylesDate();
   const stylesComment = useStylesComment();
   const [numberTower, setNumberTower] = React.useState("");
+  //.............Хуки для полей форм............
   const handleChangeTower = (event) => {
     setNumberTower(event.target.value);
   };
@@ -67,7 +74,7 @@ export const Form = ({ ...props }) => {
 
   const [showWarning, setWarning] = React.useState(false);
   const [showSuccess, setSuccess] = React.useState(false);
-
+  //функция при submit
   const handleSubmit = (event) => {
     event.preventDefault();
     if (selectedDate === null) {
@@ -86,7 +93,7 @@ export const Form = ({ ...props }) => {
     setSuccess(true);
     console.log(JSON.stringify(data, null, 2));
   };
-
+  // функция при reset
   const handleReset = () => {
     setNumberTower("");
     setNumberFloor("");
@@ -100,6 +107,7 @@ export const Form = ({ ...props }) => {
   return (
     <MuiThemeProvider>
       <form onSubmit={handleSubmit} className={stylesForm.FormRoot} {...props}>
+        {/* Варнинг выбора даты */}
         {showWarning && (
           <Alert
             onClose={() => {
@@ -110,6 +118,7 @@ export const Form = ({ ...props }) => {
             Вы не выбрали дату
           </Alert>
         )}
+        {/* Сообщение успеха */}
         {showSuccess && (
           <Alert
             onClose={() => {
@@ -120,6 +129,7 @@ export const Form = ({ ...props }) => {
             Успешно! Взгляните в консоль!
           </Alert>
         )}
+        {/* Поля формы*/}
         <FormControl fullWidth>
           <InputLabel fullWidth variant="standart" htmlFor="tower_number">
             Выберите башню
@@ -155,6 +165,7 @@ export const Form = ({ ...props }) => {
             label="Выберите этаж"
             onChange={handleChangeFloor}
           >
+            {/* Рендер этажей в селекторе */}
             {itemsFloor.map((item) => (
               <MenuItem key={item} value={item}>
                 {item}
@@ -208,6 +219,7 @@ export const Form = ({ ...props }) => {
             onChange={handleChangeTime}
             disabled={!selectedDate}
           >
+            {/* Проверка для селектора времени */}
             {itemsTime.map((item) => {
               const isToday =
                 dayjs(selectedDate).format("YYYY-MM-DD") ===
